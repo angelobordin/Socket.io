@@ -5,8 +5,9 @@ let documentCollection;
 
 try {
     await client.connect();
-    const db = client.db('WebSocketDB');
-    documentCollection = db.collection('documentos');
+
+    const db = client.db("websockets");
+    documentCollection = db.collection("documents");
 
     console.log('Connected with DataBase sucessful!');
 } catch (error) {
