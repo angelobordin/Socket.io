@@ -7,12 +7,18 @@ const textArea = document.getElementById('editor-texto');
 const title = document.getElementById('titulo-documento');
 title.textContent = documentName || "Documento Sem Titulo";
 
-socket.emit('Selected_Document', documentName);
+socket.emit('Selected_Document', (documentName, (textDefault) => {
+    textArea.value = textDefault;
+}));
 
 textArea.addEventListener('keyup', () => {
-    socket.emit('text', { text: textArea.value, name: documentName});
+    socket.emit('text_for_client', { text: textArea.value, name: documentName});
 });
 
 socket.on('text_for_client', (text) => {
     textArea.value = text;
 });
+
+// socket.on('text_default', (text) => {
+//     textArea.value = text;
+// })
