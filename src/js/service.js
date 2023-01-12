@@ -23,6 +23,40 @@ class Service {
             throw new Error(error);
         }
     }
+
+    static async getDocumentList() {
+        try {
+            const documents = documentCollection.find().toArray();
+            return documents;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    static async createNewDocument(newDocument) {
+        try {
+            await documentCollection.insertOne({
+                name: newDocument,
+                text: null
+            })
+
+            return;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    static async deleteDocument(documentName) {
+        try {
+            await documentCollection.deleteOne({
+                name: documentName
+            });
+
+            return;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
 
 export default Service;
