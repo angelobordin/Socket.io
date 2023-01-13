@@ -1,5 +1,7 @@
+import { removeDocumentDeleted } from "./index.js";
+
 const socket = io();
-const textArea = document.getElementById('editor-texto');
+const textDocumentSelected = document.getElementById('editor-texto');
 const title = document.getElementById('titulo-documento');
 const btnExcluir = document.getElementById('excluir-documento');
 
@@ -7,25 +9,27 @@ const parameters = new URLSearchParams(window.location.search);
 const documentName = parameters.get('nome');
 title.textContent = documentName || "Documento Sem Titulo";
 
-socket.emit('Selected_Document', documentName, (textDefault) => {textArea.value = textDefault});
+socket.emit('getDocumentSelected', documentName, (textDocument) => {textDocumentSelected.value = textDocument});
 
 btnExcluir.addEventListener('click', () => {
-    socket.emit('deleteDocument', documentName, (windowRefresh, name) => {
-        console.log(windowRefresh, name);
-        // if (windowRefresh) window.location.href = '/';
-        // alert(`Document ${name} deleted sucessful`);
+    socket.emit('deleteDocument', documentName, (windowRefresh) => {
+        if (!windowRefresh) return alert(`Error in delete operation!`);
+
+        // removeDocumentDeleted(documentName);
+        window.location.href = '/'
+        alert(`Document ${documentName} deleted sucessful`);
     });
 })
 
-textArea.addEventListener('keyup', () => {
+textDocumentSelected.addEventListener('keyup', () => {
     const data = { 
-        text: textArea.value, 
+        text: textDocumentSelected.value, 
         name: documentName
     };
 
-    socket.emit('text_for_client', data);
+    socket.emit('updateDocumentText', data);
 });
 
-socket.on('text_for_client', (text) => {
-    textArea.value = text;
+socket.on('updateDocumentText', (text) => {
+    textDocumentSelected.value = text;
 });

@@ -33,14 +33,14 @@ class Service {
         }
     }
 
-    static async createNewDocument(newDocument) {
+    static async createNewDocument(name) {
         try {
-            await documentCollection.insertOne({
-                name: newDocument,
+            const result = await documentCollection.insertOne({
+                name,
                 text: null
             })
 
-            return;
+            return result;
         } catch (error) {
             throw new Error(error);
         }
@@ -48,11 +48,11 @@ class Service {
 
     static async deleteDocument(documentName) {
         try {
-            await documentCollection.deleteOne({
+            const result = await documentCollection.deleteOne({
                 name: documentName
             });
 
-            return;
+            return result;
         } catch (error) {
             throw new Error(error);
         }
