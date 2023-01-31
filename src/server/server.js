@@ -3,7 +3,7 @@ import url from 'url';
 import path from 'path';
 import http from 'http';
 import { Server } from "socket.io";
-import "./db/dbConnection.js";
+import "./db/MongoConnection.js";
 
 const app = express();
 const port = process.env.port || 3000;

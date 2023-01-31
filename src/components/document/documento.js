@@ -1,4 +1,4 @@
-import { removeDocumentDeleted } from "./index.js";
+import { removeDocumentDeleted } from "../index.js";
 
 const socket = io();
 

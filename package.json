@@ -1,11 +1,11 @@
 {
   "name": "websocket",
   "version": "1.0.0",
-  "main": "src/js/socket.js",
+  "main": "src/server/socket.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon  /src/js/socket.js"
+    "dev": "nodemon  /src/server/socket.js"
   },
   "keywords": [],
   "author": "",

@@ -1,4 +1,4 @@
-import { documentCollection } from './dbConnection.js.js';
+import { documentCollection } from '../db/MongoConnection.js';
 
 class DocumentService {    
     static async findDocument(documentName) {
