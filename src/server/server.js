@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.port || 3000;
 
 const urlActual = url.fileURLToPath(import.meta.url);
-const directory = path.join(urlActual, '../..', 'html');
+const directory = path.join(urlActual, '../..', 'components');
 app.use(express.static(directory));
 
 const httpServer = http.createServer(app);

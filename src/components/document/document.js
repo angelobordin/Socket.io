@@ -1,4 +1,4 @@
-import { removeDocumentDeleted } from "../index.js";
+import { DocumentFunctions } from "./DocumentFunctions.js";
 
 const socket = io();
 
@@ -11,17 +11,13 @@ const documentName = parameters.get('nome');
 
 title.textContent = documentName || "Documento Sem Titulo";
 
+const documentFunctions = new DocumentFunctions();
+
 socket.emit('getDocumentSelected', documentName, (textDocument) => {textDocumentSelected.value = textDocument});
 
 btnExcluir.addEventListener('click', () => {
-    socket.emit('deleteDocument', documentName, (windowRefresh) => {
-        if (!windowRefresh) return alert(`Error in delete operation!`);
-
-        // removeDocumentDeleted(documentName);
-        window.location.href = '/'
-        alert(`Document ${documentName} deleted sucessful`);
-    });
-})
+    documentFunctions.deleteDocument(documentName);
+});
 
 textDocumentSelected.addEventListener('keyup', () => {
     const data = { 
@@ -29,9 +25,7 @@ textDocumentSelected.addEventListener('keyup', () => {
         name: documentName
     };
 
-    socket.emit('updateDocumentText', data);
+    documentFunctions.updateDocumentText(data);
 });
 
-socket.on('updateDocumentText', (text) => {
-    textDocumentSelected.value = text;
-});
+socket.on('updateDocumentText', (text) => {textDocumentSelected.value = text;});

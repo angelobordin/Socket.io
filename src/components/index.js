@@ -1,36 +1,20 @@
-const socket = io();
-const documentList = document.getElementById('lista-documentos');
-const form = document.getElementById('form-adiciona-documento');
-const inputNewDocument = document.getElementById('input-documento');
+import { DocumentFunctions } from "./document/DocumentFunctions.js";
 
-socket.emit('getDocumentList', (documents) => {
-    if (!documents) return;
-    for (const document of documents) {
-        insertNewDocument(document.name);
-    };
-});
+const form = document.getElementById('form-adiciona-documento');
+const documentList = document.getElementById('lista-documentos');
+const inputNewDocument = document.getElementById('input-documento');
+const documentFunctions = new DocumentFunctions(documentList);
+
+documentFunctions.getDocumentList();
+documentFunctions.listenNewDocument();
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    socket.emit('createNewDocument', inputNewDocument.value, (error) => {
-        alert(error);
-        window.location.href = '/';
-    });
+    documentFunctions.createNewDocument(inputNewDocument)
     inputNewDocument.value = '';
 });
 
-socket.on('newDocument', (newDocumentName) => {
-    insertNewDocument(newDocumentName);
-});
-
-function insertNewDocument(documentName) {
-    const newDocument = `<a href="documento.html?nome=${documentName}" class="list-group-item list-group-item-action" id="document-${documentName}">${documentName}</a>`
-    documentList.innerHTML += newDocument;
-}
-
-function removeDocumentDeleted(name) {
-    const documentDeleted = document.getElementById(`document-${name}`);
-    documentList.removeChild(documentDeleted);
-}
-
-export { insertNewDocument, removeDocumentDeleted };
+// function removeDocumentDeleted(name) {
+//     const documentDeleted = document.getElementById(`document-${name}`);
+//     documentList.removeChild(documentDeleted);
+// }
