@@ -1,6 +1,6 @@
-import { documentCollection } from './dbConnection.js';
+import { documentCollection } from './dbConnection.js.js';
 
-class Service {    
+class DocumentService {    
     static async findDocument(documentName) {
         try {
             const result = await documentCollection.findOne({name: documentName});
@@ -59,4 +59,4 @@ class Service {
     }
 }
 
-export default Service;
+export default DocumentService;
