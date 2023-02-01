@@ -13,3 +13,6 @@ form.addEventListener('submit', (event) => {
 
     loginFunctions.authUser(userData);
 });
+
+loginFunctions.listenAuthUser();
+loginFunctions.listenUserReturnMessage();

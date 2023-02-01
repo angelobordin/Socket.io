@@ -35,4 +35,4 @@ function DocumentController(socket, io) {
     });
 };
 
-export { DocumentController };
+export default DocumentController;
