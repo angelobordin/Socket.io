@@ -7,8 +7,11 @@ function LoginController(socket, io) {
 
         if (!user) return GenericFunctions.userReturnMessage(socket, `User not found`);
 
-        const auth = UserService.authUser(userData.password, user);
-        socket.emit('authUserReturn', auth ? true : false );
+        const wasAuthenticated = UserService.authUser(userData.password, user);
+        if (wasAuthenticated) {
+            const token = GenericFunctions.generateJWt({ name: userData.userName });
+        };
+        socket.emit('authUserReturn', wasAuthenticated );
     });
 };
 

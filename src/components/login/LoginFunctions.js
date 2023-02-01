@@ -7,8 +7,8 @@ class LoginFunctions {
     };
 
     listenAuthUser() {
-        socket.on('authUserReturn', (auth) => {
-            if (!auth) return alert('User password is incorrect');
+        socket.on('authUserReturn', (wasAuthenticated) => {
+            if (!wasAuthenticated) return alert('User password is incorrect');
             window.location.href = '/';
         });
     };
