@@ -10,8 +10,10 @@ function LoginController(socket, io) {
         const wasAuthenticated = UserService.authUser(userData.password, user);
         if (wasAuthenticated) {
             const token = GenericFunctions.generateJWt({ name: userData.userName });
+            GenericFunctions.toDefineCookie("tokenJwt", token);
+            socket.emit('authUserReturn', ({wasAuthenticated, token}) );
         };
-        socket.emit('authUserReturn', wasAuthenticated );
+        socket.emit('authUserReturn', ({wasAuthenticated, token: null}));
     });
 };
 
