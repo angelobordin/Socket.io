@@ -1,4 +1,3 @@
-import { GenericFunctions } from "../../server/utils/GenericFunctions.js";
 const socket = io();
 
 class LoginFunctions {
@@ -9,6 +8,7 @@ class LoginFunctions {
     listenAuthUser() {
         socket.on('authUserReturn', ({wasAuthenticated, token}) => {
             if (!wasAuthenticated) return alert('User password is incorrect');
+            document.cookie = `tokenJwt=${token};path=/`
             window.location.href = '/';
         });
     };

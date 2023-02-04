@@ -1,18 +1,23 @@
 import { DocumentFunctions } from "./document/DocumentFunctions.js";
-// import { GenericFunctions } from '../server/utils/GenericFunctions.js';
 
 const form = document.getElementById('form-adiciona-documento');
 const documentList = document.getElementById('lista-documentos');
 const inputNewDocument = document.getElementById('input-documento');
 const documentFunctions = new DocumentFunctions(documentList);
 const btnLogout = document.getElementById('botao-logout');
-// const tokenJwt = GenericFunctions.getCookie('tokenJwt');
+const tokenJwt = document.cookie.split('; ').find((cookie) => cookie.startsWith(`tokenJwt=`))?.split('=')[1];
+
+const socket = io('/usuarios',{
+    auth: {
+        token: tokenJwt
+    }
+});
 
 documentFunctions.getDocumentList();
 documentFunctions.listenNewDocument();
 
 btnLogout.addEventListener('click', () => {
-    // GenericFunctions.cleanCookie('tokenJwt');
+    document.cookie = `tokenJwt=; expires=Thu, 01 Jan 1970 00:00:00`;
     alert('Usuer logout sucessfully!');
     window.location.href = '/login/index.html';
 });

@@ -17,6 +17,13 @@ class DocumentFunctions {
         });
     };
 
+    connectError() {
+        socket.on('connectError', (erro) => {
+            alert(erro);
+            windows.location.href = '/login/index.html'
+        });
+    };
+
     // getDocumentSelected(documentSelected) {
     //     socket.emit('getDocumentSelected', documentSelected, (textDocument) => {
     //         return textDocument

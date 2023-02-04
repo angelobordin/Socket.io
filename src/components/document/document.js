@@ -1,6 +1,10 @@
 import { DocumentFunctions } from "./DocumentFunctions.js";
 
-const socket = io();
+const socket = io('/usuarios',{
+    auth: {
+        token: tokenJwt
+    }
+});
 
 const textDocumentSelected = document.getElementById('editor-texto');
 const title = document.getElementById('titulo-documento');
@@ -13,6 +17,7 @@ title.textContent = documentName || "Documento Sem Titulo";
 
 const documentFunctions = new DocumentFunctions();
 
+documentFunctions.connectError();
 socket.emit('getDocumentSelected', documentName, (textDocument) => {textDocumentSelected.value = textDocument});
 
 btnExcluir.addEventListener('click', () => {
