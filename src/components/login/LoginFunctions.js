@@ -1,3 +1,5 @@
+import { FrontGenericFunctions } from "../utils/FrontGenericFunctions.js";
+
 const socket = io();
 
 class LoginFunctions {
@@ -8,7 +10,7 @@ class LoginFunctions {
     listenAuthUser() {
         socket.on('authUserReturn', ({wasAuthenticated, token}) => {
             if (!wasAuthenticated) return alert('User password is incorrect');
-            document.cookie = `tokenJwt=${token};path=/`
+            FrontGenericFunctions.toDefineCookie("tokenJwt", token);
             window.location.href = '/';
         });
     };

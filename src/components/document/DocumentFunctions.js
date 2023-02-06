@@ -1,8 +1,13 @@
-const socket = io();
+import { FrontGenericFunctions } from "../utils/FrontGenericFunctions.js";
+
+const socket = io('/usuarios', {
+    auth: {
+        token: FrontGenericFunctions.getCookie('tokenJwt')
+    }
+});
 
 class DocumentFunctions {
     documentList;
-    textDocument;
 
     constructor(documentList) {
         this.documentList = documentList;   
@@ -23,12 +28,6 @@ class DocumentFunctions {
             windows.location.href = '/login/index.html'
         });
     };
-
-    // getDocumentSelected(documentSelected) {
-    //     socket.emit('getDocumentSelected', documentSelected, (textDocument) => {
-    //         return textDocument
-    //     });
-    // }
 
     createNewDocument(newDocument) {
         socket.emit('createNewDocument', newDocument.value, (error) => {
@@ -51,12 +50,6 @@ class DocumentFunctions {
         socket.emit('updateDocumentText', data);
     };
 
-    // listenUpdateDocumentText() {
-    //     socket.on('updateDocumentText', (text) => {
-    //         textDocumentSelected.value = text;
-    //     });
-    // }
-
     listenNewDocument() {             
         socket.on('newDocument', (newDocumentName) => {
             this.generateDocumentTemplate(newDocumentName);
@@ -67,6 +60,24 @@ class DocumentFunctions {
         const newDocument = `<a href="../document/document.html?nome=${documentName}" class="list-group-item list-group-item-action" id="document-${documentName}">${documentName}</a>`
         this.documentList.innerHTML += newDocument;
     };
+    
+    listenUserAuthenticated() {
+        socket.on('userAuthenticated', (userName) => {
+            console.log(userName)
+        });
+    };
+
+    // listenUpdateDocumentText() {
+    //     socket.on('updateDocumentText', (text) => {
+    //         textDocumentSelected.value = text;
+    //     });
+    // }
+
+    // getDocumentSelected(documentSelected) {
+    //     return socket.emit('getDocumentSelected', documentSelected, (textDocument) => {
+    //         return textDocument
+    //     });
+    // }
 };
 
 export { DocumentFunctions };

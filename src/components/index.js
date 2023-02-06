@@ -1,4 +1,5 @@
 import { DocumentFunctions } from "./document/DocumentFunctions.js";
+import { FrontGenericFunctions } from "./utils/FrontGenericFunctions.js";
 
 const form = document.getElementById('form-adiciona-documento');
 const documentList = document.getElementById('lista-documentos');
@@ -17,7 +18,7 @@ documentFunctions.getDocumentList();
 documentFunctions.listenNewDocument();
 
 btnLogout.addEventListener('click', () => {
-    document.cookie = `tokenJwt=; expires=Thu, 01 Jan 1970 00:00:00`;
+    FrontGenericFunctions.cleanCookie('tokenJwt')
     alert('Usuer logout sucessfully!');
     window.location.href = '/login/index.html';
 });

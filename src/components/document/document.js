@@ -1,8 +1,9 @@
+import { FrontGenericFunctions } from "../utils/FrontGenericFunctions.js";
 import { DocumentFunctions } from "./DocumentFunctions.js";
 
 const socket = io('/usuarios',{
     auth: {
-        token: tokenJwt
+        token: FrontGenericFunctions.getCookie('tokenJwt')
     }
 });
 
@@ -18,6 +19,7 @@ title.textContent = documentName || "Documento Sem Titulo";
 const documentFunctions = new DocumentFunctions();
 
 documentFunctions.connectError();
+documentFunctions.listenUserAuthenticated();
 socket.emit('getDocumentSelected', documentName, (textDocument) => {textDocumentSelected.value = textDocument});
 
 btnExcluir.addEventListener('click', () => {
