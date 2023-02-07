@@ -15,7 +15,7 @@ A escolha da utilização de websockets ajuda na dinâmica do projeto, pois as a
 <h2>Funcionalidades do projeto :hammer: </h2>
 
 - `Cadastro de Usuários e Login`: O projeto possui tela de cadastro e login para os usuários.
-- `Criação de validação de Token`: Quando o usuário se loga no sistema é gerado um token único para permitir ou bloquear o acesso direto pela url do site.
+- `Criação e validação de Token`: Quando o usuário se loga no sistema é gerado um token único para permitir ou bloquear o acesso direto pela url do site.
 - `Criação de novos Documentos`: Os usuários poderão criar vários documentos, que serão compartilhados com todos os demais usuários.
 - `Alteração do conteúdo dos Documentos`: Os usuários tem acesso ao conteúdo do documento para que alterem e modifiquem o mesmo conforme necessidade.
 - `Exclusão de Documentos`: Os usuários poderão excluir os documentos conforme necessidade.<br>
@@ -46,5 +46,14 @@ Logo em seguida deve abrir uma nova guia no seu navegador com a tela inicial do 
 
 <h2>Tecnologias Utilizadas</h2>
 
-
-* [![Next][Next.js]][https://nextjs.org/]
+<ul>
+  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-plain.svg" width="20" height="20"/><b> Visual Studio Code</b></li>
+  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="20" height="20"/><b> Node.JS</b></li>
+  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="20" height="20"/><b> JavaScript</b></li>
+  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg" width="20" height="20"/><b> Socket.io</b></li>
+  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="20" height="20"/><b> MongoDB</li>
+  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" width="20" height="20"/><b> BootStrap</b></li>
+  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" width="20" height="20"/><b> Express</b></li>
+  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="20" height="20"/><b> HTML 5</b></li>
+  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="20" height="20"/><b> CSS 3</b></li>
+</ul>
